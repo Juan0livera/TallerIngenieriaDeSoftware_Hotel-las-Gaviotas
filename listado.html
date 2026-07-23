@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Reservas</title>
+
+    <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-content">
+
+        <div class="brand">
+            <div class="brand-text">
+                <span>Hotel</span>
+                <strong>Las Gaviotas</strong>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <a href="#" onclick="logout()">Cerrar sesión</a>
+        </nav>
+
+    </div>
+</header>
+
+<main class="section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <p class="eyebrow">Administración</p>
+            <h2>Listado de Reservas</h2>
+        </div>
+
+        <div id="listaReservas"></div>
+
+    </div>
+
+</main>
+
+<script src="src/core/reservas.js"></script>
+<script src="src/app.js"></script>
+
+</body>
+</html>
