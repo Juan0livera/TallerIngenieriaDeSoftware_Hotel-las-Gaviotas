@@ -1061,3 +1061,147 @@ select {
     letter-spacing: 2px;
   }
 }
+
+
+   /* =========================
+   LOGIN
+   ========================= */
+
+.login-page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:30px;
+    background:var(--cream);
+}
+
+.login-card{
+    width:100%;
+    max-width:380px;
+    padding:35px;
+    background:var(--white);
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    text-align:center;
+}
+
+.login-card img{
+    width:120px;
+    height:120px;
+    margin:0 auto 20px;
+    object-fit:cover;
+    border-radius:50%;
+}
+
+.login-card h2{
+    margin-bottom:25px;
+    color:var(--navy);
+    font-family:"Playfair Display", serif;
+}
+
+.login-card input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    outline:none;
+    transition:.2s;
+}
+
+.login-card input:focus{
+    border-color:var(--gold);
+}
+
+.login-card button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:8px;
+    background:var(--navy);
+    color:var(--white);
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.login-card button:hover{
+    background:var(--navy-dark);
+}
+
+.login-error{
+    margin-top:15px;
+    color:#c62828;
+    font-size:.9rem;
+}
+
+@media (max-width:500px){
+
+    .login-page{
+        padding:20px;
+    }
+
+    .login-card{
+        padding:25px;
+    }
+
+    .login-card img{
+        width:100px;
+        height:100px;
+    }
+
+}
+#btnVolver{
+    width:100%;
+    padding:13px;
+    margin-top:12px;
+    background:var(--white);
+    color:var(--navy);
+    border:1px solid var(--navy);
+    border-radius:8px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+#btnVolver:hover{
+    background:var(--cream);
+}
+
+
+   /* =========================
+   Listado de reservas
+   ========================= */
+
+.tabla-reservas {
+    width: 100%;
+    margin-top: 30px;
+    background: var(--white);
+    border-collapse: collapse;
+    box-shadow: var(--shadow);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.tabla-reservas th {
+    padding: 15px;
+    text-align: left;
+    color: var(--white);
+    background: var(--navy);
+}
+
+.tabla-reservas td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+.tabla-reservas tr td[colspan] {
+    text-align: center;
+    color: var(--muted);
+}
+
+#mensajeReservas {
+    text-align: center;
+    color: var(--muted);
+    margin-top: 20px;
+}
