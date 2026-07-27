@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,9 @@
   <link rel="icon" type="image/svg+xml" href="img/logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="reserva.css">
   <script src="reserva.js" defer></script>
@@ -65,20 +68,21 @@
 
             <div class="form-grid form-grid-2">
               <div class="form-group">
-                <label for="nombre">Nombre completo <span>*</span></label>
-                <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej.: Juan Olivera" required minlength="3">
+                <label for="fullName">Nombre completo <span>*</span></label>
+                <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="Ej.: Juan Olivera" required minlength="3">
                 <small class="field-error"></small>
               </div>
 
               <div class="form-group">
-                <label for="telefono">Teléfono <span>*</span></label>
-                <input id="telefono" name="telefono" type="tel" autocomplete="tel" placeholder="Ej.: 099 123 456" required pattern="[0-9+\s()-]{7,20}">
+                <label for="phone">Teléfono <span>*</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Ej.: 099 123 456" required pattern="[0-9+\s()-]{7,20}">
                 <small class="field-error"></small>
               </div>
 
               <div class="form-group form-group-full">
                 <label for="email">Correo electrónico <span>*</span></label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="Ej.: juan@email.com" required>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="Ej.: juan@email.com"
+                  required>
                 <small class="field-error"></small>
               </div>
             </div>
@@ -158,38 +162,41 @@
             </div>
 
             <div class="payment-notice">
-              Prototipo académico: no se realizará ningún cobro real ni se almacenará el número completo de tarjeta o el código CVV.
+              Prototipo académico: no se realizará ningún cobro real ni se almacenará el número completo de tarjeta o el
+              código CVV.
             </div>
 
             <div class="form-grid form-grid-2">
               <div class="form-group form-group-full">
-                <label for="titular">Nombre del titular <span>*</span></label>
-                <input id="titular" name="titular" type="text" autocomplete="cc-name" placeholder="Como aparece en la tarjeta" required minlength="3">
+                <label for="cardHolder">Nombre del titular <span>*</span></label>
+                <input id="cardHolder" name="cardHolder" type="text" autocomplete="cc-name" placeholder="Como aparece en la tarjeta" required minlength="3">
                 <small class="field-error"></small>
               </div>
 
               <div class="form-group form-group-full">
-                <label for="tarjeta">Número de tarjeta <span>*</span></label>
-                <input id="tarjeta" name="tarjeta" type="text" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="1234 5678 9012 3456" required>
+                <label for="cardNumber">Número de tarjeta <span>*</span></label>
+                <input id="cardNumber" name="cardNumber" type="text" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="1234 5678 9012 3456" required>
                 <small class="field-error"></small>
               </div>
 
               <div class="form-group">
-                <label for="vencimiento">Vencimiento <span>*</span></label>
-                <input id="vencimiento" name="vencimiento" type="text" inputmode="numeric" autocomplete="cc-exp" maxlength="5" placeholder="MM/AA" required>
+                <label for="expiry">Vencimiento <span>*</span></label>
+                <input id="expiry" name="expiry" type="text" inputmode="numeric" autocomplete="cc-exp" maxlength="5" placeholder="MM/AA" required>
                 <small class="field-error"></small>
               </div>
 
               <div class="form-group">
                 <label for="cvv">CVV <span>*</span></label>
-                <input id="cvv" name="cvv" type="password" inputmode="numeric" autocomplete="cc-csc" maxlength="4" placeholder="123" required>
+                <input id="cvv" name="cvv" type="password" inputmode="numeric" autocomplete="cc-csc" maxlength="4"
+                  placeholder="123" required>
                 <small class="field-error"></small>
               </div>
             </div>
 
             <label class="terms-option">
               <input id="terms" name="terms" type="checkbox" required>
-              <span>Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a>.</span>
+              <span>Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de
+                  privacidad</a>.</span>
             </label>
             <small class="field-error terms-error"></small>
           </section>
@@ -208,12 +215,30 @@
             <h2 id="summaryTitle">Seleccioná una habitación</h2>
 
             <dl class="summary-list">
-              <div><dt>Tipo</dt><dd id="summaryRoomType">—</dd></div>
-              <div><dt>Categoría</dt><dd id="summaryCategory">—</dd></div>
-              <div><dt>Huéspedes</dt><dd id="summaryGuests">—</dd></div>
-              <div><dt>Ingreso</dt><dd id="summaryCheckIn">—</dd></div>
-              <div><dt>Salida</dt><dd id="summaryCheckOut">—</dd></div>
-              <div><dt>Noches</dt><dd id="summaryNights">0</dd></div>
+              <div>
+                <dt>Tipo</dt>
+                <dd id="summaryRoomType">—</dd>
+              </div>
+              <div>
+                <dt>Categoría</dt>
+                <dd id="summaryCategory">—</dd>
+              </div>
+              <div>
+                <dt>Huéspedes</dt>
+                <dd id="summaryGuests">—</dd>
+              </div>
+              <div>
+                <dt>Ingreso</dt>
+                <dd id="summaryCheckIn">—</dd>
+              </div>
+              <div>
+                <dt>Salida</dt>
+                <dd id="summaryCheckOut">—</dd>
+              </div>
+              <div>
+                <dt>Noches</dt>
+                <dd id="summaryNights">0</dd>
+              </div>
             </dl>
 
             <div class="price-breakdown">
@@ -253,18 +278,68 @@
   </div>
 
   <footer class="site-footer">
-    <div class="container footer-content">
-      <div>
-        <strong>Hotel Las Gaviotas</strong>
-        <p>Tu descanso frente al mar.</p>
+    <div class="container footer-main">
+
+      <div class="footer-brand">
+        <a class="brand brand-footer" href="index.html">
+          <span class="brand-text">
+            <span>Hotel</span>
+            <strong>Las Gaviotas</strong>
+          </span>
+        </a>
+
+        <p>
+          Confort, tranquilidad y una experiencia inolvidable junto al mar.
+        </p>
       </div>
 
-      <div>
-        <a href="tel:+59899123456">099 123 456</a>
-        <a href="mailto:contacto@lasgaviotas.com">contacto@lasgaviotas.com</a>
-        <span>Punta del Este, Uruguay</span>
+      <div class="footer-column">
+        <h3>Contacto</h3>
+
+        <p>
+          <strong>Dirección:</strong><br>
+          Punta del Este, Uruguay
+        </p>
+
+        <a href="tel:099123456">
+          099 123 456
+        </a>
+
+        <a href="mailto:contacto@lasgaviotas.com">
+          contacto@lasgaviotas.com
+        </a>
       </div>
-    </div>
+
+      <div class="footer-column">
+        <h3>Horarios de recepción</h3>
+
+        <p>
+          Recepción disponible<br>
+          las 24 horas
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Redes sociales</h3>
+
+        <div class="social-links" aria-label="Redes sociales del hotel">
+          <span class="social-icon" title="Instagram">
+            <img src="img/instagram.png" alt="Instagram">
+          </span>
+
+          <span class="social-icon" title="Facebook">
+            <img src="img/facebook.png" alt="Facebook">
+          </span>
+        </div>
+
+      </div>
+
+      <div class="container footer-bottom">
+        <p>
+          © 2026 Hotel Las Gaviotas.
+        </p>
+      </div>
   </footer>
 </body>
+
 </html>
