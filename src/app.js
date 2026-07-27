@@ -3,6 +3,12 @@ let miApp = new Sistema();
 function eventos() {
     let btnIngresar = document.querySelector("#btnIngresar");
 
+    let btnReservar = document.querySelector("#btnReservar");
+
+    if(btnReservar){
+        btnReservar.addEventListener("click", reservar);
+    }
+
     if (btnIngresar) {
         btnIngresar.addEventListener("click", loginUI);
     }
@@ -24,7 +30,7 @@ function loginUI() {
         mensaje = "Nombre o contraseña incorrecta";
     }
 
-    document.querySelector("#errorLogin").innerHTML = mensaje;
+    document.querySelector("#errorLogin").innerHTML = mensae;
 }
 
 function logout() {
@@ -48,4 +54,73 @@ function mostrarReservas() {
 
 }
 
-mostrarReservas();
+
+function reservar (){
+    let nombre = document.querySelector("#nombre").value.trim();
+    let telefono = document.querySelector("#telefono").value.trim();
+    let email = document.querySelector("#email").value.trim();
+    let fechaIngreso = document.querySelector("#fechaIngreso").value.trim();
+    let fechaSalida = document.querySelector("#fechaSalida").value;
+    let tipoHabitacion = document.querySelector("#tipoHabitacion").value;
+    let categoria = document.querySelector("#categoria").value;
+    let huespedes = document.querySelector("#huespedes").value;
+    let titular = document.querySelector("#titular").value.trim();
+    let tarjeta = document.querySelector("#tarjeta").value.trim();
+    let vencimiento = document.querySelector("#vencimiento").value.trim();
+    let cvv = document.querySelector("#cvv").value.trim();
+
+    let mensaje = document.querySelector("#mensajeReserva");
+
+
+    if (
+        nombre === "" ||
+        telefono === "" ||
+        email === "" ||
+        fechaIngreso === "" ||
+        fechaSalida === "" ||
+        tipoHabitacion === "" ||
+        categoria === "" ||
+        huespedes <= 0 ||
+        titular === "" ||
+        tarjeta === "" ||
+        vencimiento === "" ||
+        cvv === ""
+    ) {
+
+        mensaje.textContent = "Debe completar los campos.";
+        return;
+    }
+
+    if(new Date(fechaSalida) <= new Date(fechaIngreso)){
+        mensaje.textContent =
+            "La fecha de salida debe ser posterior a la fecha de ingreso";
+        return;
+    }
+
+    let nuevaReserva = new Reserva(
+        nombre, 
+        telefono,
+        email,
+        fechaIngreso,
+        fechaSalida,
+        tipoHabitacion,
+        categoria,
+        huespedes,
+        titular,
+        tarjeta,
+        vencimiento,
+        cvv
+    );
+
+    miApp.agregarReserva(nuevaReserva);
+
+    mensaje.textContent = "La reserva se realizó correctamente";
+
+    document.querySelector("#fromReserva").rest();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    controlarAcceso();
+    eventos();
+    mostrarReservas();
+});

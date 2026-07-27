@@ -65,14 +65,14 @@
 
             <div class="form-grid form-grid-2">
               <div class="form-group">
-                <label for="fullName">Nombre completo <span>*</span></label>
-                <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="Ej.: Juan Olivera" required minlength="3">
+                <label for="nombre">Nombre completo <span>*</span></label>
+                <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej.: Juan Olivera" required minlength="3">
                 <small class="field-error"></small>
               </div>
 
               <div class="form-group">
-                <label for="phone">Teléfono <span>*</span></label>
-                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Ej.: 099 123 456" required pattern="[0-9+\s()-]{7,20}">
+                <label for="telefono">Teléfono <span>*</span></label>
+                <input id="telefono" name="telefono" type="tel" autocomplete="tel" placeholder="Ej.: 099 123 456" required pattern="[0-9+\s()-]{7,20}">
                 <small class="field-error"></small>
               </div>
 
@@ -95,20 +95,20 @@
 
             <div class="form-grid form-grid-2">
               <div class="form-group">
-                <label for="checkIn">Fecha de ingreso <span>*</span></label>
-                <input id="checkIn" name="checkIn" type="date" required>
+                <label for="fechaIngreso">Fecha de ingreso <span>*</span></label>
+                <input id="fechaIngreso" name="fechaIngreso" type="date" required>
                 <small class="field-error"></small>
               </div>
 
               <div class="form-group">
-                <label for="checkOut">Fecha de salida <span>*</span></label>
-                <input id="checkOut" name="checkOut" type="date" required>
+                <label for="fechaIngreso">Fecha de salida <span>*</span></label>
+                <input id="fechaIngreso" name="fechaIngreso" type="date" required>
                 <small class="field-error"></small>
               </div>
 
               <div class="form-group">
-                <label for="roomType">Tipo de habitación <span>*</span></label>
-                <select id="roomType" name="roomType" required>
+                <label for="tipoHabitacion">Tipo de habitación <span>*</span></label>
+                <select id="tipoHabitacion" name="tipoHabitacion" required>
                   <option value="">Seleccioná una opción</option>
                   <option value="Individual">Individual</option>
                   <option value="Doble">Doble</option>
@@ -118,8 +118,8 @@
               </div>
 
               <div class="form-group">
-                <label for="category">Categoría <span>*</span></label>
-                <select id="category" name="category" required>
+                <label for="categoria">Categoría <span>*</span></label>
+                <select id="categoria" name="categoria" required>
                   <option value="">Seleccioná una categoría</option>
                   <option value="Estandar" data-price="100">Estándar — USD 100 por noche</option>
                   <option value="Premium" data-price="110">Premium — USD 110 por noche</option>
@@ -130,8 +130,8 @@
               </div>
 
               <div class="form-group form-group-full">
-                <label for="guests">Cantidad de huéspedes <span>*</span></label>
-                <select id="guests" name="guests" required>
+                <label for="huespedes">Cantidad de huéspedes <span>*</span></label>
+                <select id="huespedes" name="huespedes" required>
                   <option value="">Seleccioná la cantidad</option>
                   <option value="1">1 huésped</option>
                   <option value="2">2 huéspedes</option>
@@ -163,20 +163,20 @@
 
             <div class="form-grid form-grid-2">
               <div class="form-group form-group-full">
-                <label for="cardHolder">Nombre del titular <span>*</span></label>
-                <input id="cardHolder" name="cardHolder" type="text" autocomplete="cc-name" placeholder="Como aparece en la tarjeta" required minlength="3">
+                <label for="titular">Nombre del titular <span>*</span></label>
+                <input id="titular" name="titular" type="text" autocomplete="cc-name" placeholder="Como aparece en la tarjeta" required minlength="3">
                 <small class="field-error"></small>
               </div>
 
               <div class="form-group form-group-full">
-                <label for="cardNumber">Número de tarjeta <span>*</span></label>
-                <input id="cardNumber" name="cardNumber" type="text" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="1234 5678 9012 3456" required>
+                <label for="tarjeta">Número de tarjeta <span>*</span></label>
+                <input id="tarjeta" name="tarjeta" type="text" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="1234 5678 9012 3456" required>
                 <small class="field-error"></small>
               </div>
 
               <div class="form-group">
-                <label for="expiry">Vencimiento <span>*</span></label>
-                <input id="expiry" name="expiry" type="text" inputmode="numeric" autocomplete="cc-exp" maxlength="5" placeholder="MM/AA" required>
+                <label for="vencimiento">Vencimiento <span>*</span></label>
+                <input id="vencimiento" name="vencimiento" type="text" inputmode="numeric" autocomplete="cc-exp" maxlength="5" placeholder="MM/AA" required>
                 <small class="field-error"></small>
               </div>
 
@@ -194,7 +194,7 @@
             <small class="field-error terms-error"></small>
           </section>
 
-          <button class="submit-button" type="submit">Confirmar reserva</button>
+          <button type="button" id="btnReservar">Realizar reserva</button>
           <p class="no-login-message">No necesitás registrarte ni iniciar sesión para reservar.</p>
         </form>
 

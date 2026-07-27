@@ -15,6 +15,8 @@ class Reserva {
         this.tipoHabitacion = tipoHabitacion;
         this.categoria = categoria;
         this.huespedes = huespedes;
+
+        //recibimos estos datos pero no resrevamos en localstorage
         this.titular = titular;
         this.tarjeta = tarjeta;
         this.vencimiento = vencimiento;
