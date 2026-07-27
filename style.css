@@ -893,7 +893,7 @@ select {
       rgba(248, 245, 239, 0.96),
       rgba(248, 245, 239, 0.96)
     ),
-    url("assets/hotel-principal-1920x1080.jpg") center / cover fixed;
+    url("img/inicio.png") center / cover fixed;
 }
 
 .reviews-summary {

@@ -170,7 +170,7 @@ button {
   color: var(--navy);
   background:
     linear-gradient(90deg, rgba(255,255,255,.98), rgba(255,255,255,.74)),
-    url("assets/hotel-principal-1920x1080.jpg") center / cover no-repeat;
+    url("img/inicio.png") center / cover no-repeat;
 }
 
 .reservation-hero h1 {
