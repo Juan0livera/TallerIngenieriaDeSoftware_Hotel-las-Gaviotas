@@ -120,7 +120,7 @@ function reservar (){
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    controlarAcceso();
+    //controlarAcceso();
     eventos();
     mostrarReservas();
 });
