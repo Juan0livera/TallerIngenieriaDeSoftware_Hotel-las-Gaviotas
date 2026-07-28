@@ -14,7 +14,7 @@ function eventos() {
     }
 }
 
-eventos();
+// eventos();
 
 function loginUI() {
     let mensaje = "";
