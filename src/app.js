@@ -69,7 +69,7 @@ function reservar (){
     let vencimiento = document.querySelector("#vencimiento").value.trim();
     let cvv = document.querySelector("#cvv").value.trim();
 
-    let mensaje = document.querySelector("#mensajeReserva");
+   //let mensaje = document.querySelector("#mensajeReserva");
 
 
     if (
@@ -87,13 +87,13 @@ function reservar (){
         cvv === ""
     ) {
 
-        mensaje.textContent = "Debe completar los campos.";
+        // mensaje.textContent = "Debe completar los campos.";
         return;
     }
 
     if(new Date(fechaSalida) <= new Date(fechaIngreso)){
-        mensaje.textContent =
-            "La fecha de salida debe ser posterior a la fecha de ingreso";
+        // mensaje.textContent =
+        //     "La fecha de salida debe ser posterior a la fecha de ingreso";
         return;
     }
 
@@ -114,9 +114,11 @@ function reservar (){
 
     miApp.agregarReserva(nuevaReserva);
 
-    mensaje.textContent = "La reserva se realizó correctamente";
+    //mensaje.textContent = "La reserva se realizó correctamente";
 
-    document.querySelector("#fromReserva").rest();
+    //document.querySelector("#reservationForm").rest();
+
+    
 }
 
 document.addEventListener("DOMContentLoaded", function () {

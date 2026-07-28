@@ -32,6 +32,10 @@ class Sistema {
         this.listaUsuarios.push(new Usuario("admin", "hotel"));
     }
 
+    agregarReserva(nuevaReserva){
+        this.listaReservas.push(nuevaReserva);
+    }
+
     login(usuarioIngresado, contraseniaIngresada) {
         let valido = false;
         let i = 0;
