@@ -14,7 +14,6 @@ function eventos() {
     }
 }
 
-// eventos();
 
 function loginUI() {
     let mensaje = "";
@@ -127,7 +126,7 @@ function reservar (){
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    //controlarAcceso();
+
     eventos();
     mostrarReservas();
 });
