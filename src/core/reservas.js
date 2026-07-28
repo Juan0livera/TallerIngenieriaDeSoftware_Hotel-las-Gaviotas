@@ -72,52 +72,51 @@ class Sistema {
 
     cargarTablaReservas() {
 
-        let tabla = `
-        <table class="tabla-reservas">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Ingreso</th>
-                    <th>Salida</th>
-                    <th>Habitación</th>
-                    <th>Categoría</th>
-                    <th>Huéspedes</th>
-                </tr>
-            </thead>
-            <tbody>
+    let tabla = `
+    <table class="tabla-reservas">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Ingreso</th>
+                <th>Salida</th>
+                <th>Habitación</th>
+                <th>Categoría</th>
+                <th>Huéspedes</th>
+            </tr>
+        </thead>
+        <tbody>
     `;
 
-        if (this.listaReservas.length === 0) {
+    if (this.listaReservas.length === 0) {
+        tabla += `
+        <tr>
+            <td colspan="7">No hay reservas registradas</td>
+        </tr>
+        `;
+    } else {
+        for (let reserva of this.listaReservas) {
             tabla += `
             <tr>
-                <td colspan="7">No hay reservas registradas</td>
+                <td data-label="Nombre">${reserva.nombre}</td>
+                <td data-label="Email">${reserva.email}</td>
+                <td data-label="Ingreso">${reserva.fechaIngreso}</td>
+                <td data-label="Salida">${reserva.fechaSalida}</td>
+                <td data-label="Habitación">${reserva.tipoHabitacion}</td>
+                <td data-label="Categoría">${reserva.categoria}</td>
+                <td data-label="Huéspedes">${reserva.huespedes}</td>
             </tr>
-        `;
-        }
-        else {
-            for (let reserva of this.listaReservas) {
-                tabla += `
-                <tr>
-                    <td>${reserva.nombre}</td>
-                    <td>${reserva.email}</td>
-                    <td>${reserva.fechaIngreso}</td>
-                    <td>${reserva.fechaSalida}</td>
-                    <td>${reserva.tipoHabitacion}</td>
-                    <td>${reserva.categoria}</td>
-                    <td>${reserva.huespedes}</td>
-                </tr>
             `;
-            }
         }
+    }
 
-        tabla += `
-            </tbody>
-        </table>
+    tabla += `
+        </tbody>
+    </table>
     `;
 
-        return tabla;
-    }
+    return tabla;
+}
 
 
 
