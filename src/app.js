@@ -30,7 +30,7 @@ function loginUI() {
         mensaje = "Nombre o contraseña incorrecta";
     }
 
-    document.querySelector("#errorLogin").innerHTML = mensae;
+    document.querySelector("#errorLogin").innerHTML = mensaje;
 }
 
 function logout() {

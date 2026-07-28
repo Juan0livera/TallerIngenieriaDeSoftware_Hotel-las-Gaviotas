@@ -30,10 +30,26 @@ class Sistema {
         this.listaReservas = [];
 
         this.listaUsuarios.push(new Usuario("admin", "hotel"));
+        this.cargarReservasDesdeLocalStorage();
     }
 
-    agregarReserva(nuevaReserva){
+    agregarReserva(nuevaReserva) {
         this.listaReservas.push(nuevaReserva);
+        this.guardarReservasEnLocalStorage();
+
+    }
+
+    guardarReservasEnLocalStorage() {
+        let reservasJSON = JSON.stringify(this.listaReservas);
+        localStorage.setItem("reservas", reservasJSON);
+    }
+
+    cargarReservasDesdeLocalStorage() {
+        let reservasJSON = localStorage.getItem("reservas");
+
+        if (reservasJSON !== null) {
+            this.listaReservas = JSON.parse(reservasJSON);
+        }
     }
 
     login(usuarioIngresado, contraseniaIngresada) {
@@ -56,7 +72,7 @@ class Sistema {
 
     cargarTablaReservas() {
 
-    let tabla = `
+        let tabla = `
         <table class="tabla-reservas">
             <thead>
                 <tr>
@@ -72,16 +88,16 @@ class Sistema {
             <tbody>
     `;
 
-    if (this.listaReservas.length === 0) {
-        tabla += `
+        if (this.listaReservas.length === 0) {
+            tabla += `
             <tr>
                 <td colspan="7">No hay reservas registradas</td>
             </tr>
         `;
-    }
-    else {
-        for (let reserva of this.listaReservas) {
-            tabla += `
+        }
+        else {
+            for (let reserva of this.listaReservas) {
+                tabla += `
                 <tr>
                     <td>${reserva.nombre}</td>
                     <td>${reserva.email}</td>
@@ -92,19 +108,19 @@ class Sistema {
                     <td>${reserva.huespedes}</td>
                 </tr>
             `;
+            }
         }
-    }
 
-    tabla += `
+        tabla += `
             </tbody>
         </table>
     `;
 
-    return tabla;
-}
+        return tabla;
+    }
 
 
 
-    
+
 }
 
