@@ -118,6 +118,11 @@ function reservar (){
 
     //document.querySelector("#reservationForm").rest();
 
+    console.log("Reserva agregada:");
+    console.log(nuevaReserva);
+
+    console.log("Lista completa:");
+    console.table(miApp.listaReservas);
     
 }
 
