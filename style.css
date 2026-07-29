@@ -1347,7 +1347,8 @@ button {
 
 .reservation-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(320px, .75fr);
+   grid-template-columns: minmax(0, 780px);
+  justify-content: center;
   align-items: start;
   gap: 30px;
 }
@@ -1363,6 +1364,9 @@ button {
   border: 1px solid var(--border);
   border-radius: 18px;
   box-shadow: var(--shadow);
+  width: min(100% - 40px, 780px);
+  margin: 40px auto 0;
+  position: static;
 }
 
 .form-card {

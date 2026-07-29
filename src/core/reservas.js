@@ -1,125 +1,98 @@
-class Usuario {
-    constructor(usuario, contrasenia) {
-        this.usuario = usuario;
-        this.contrasenia = contrasenia;
-    }
-}
-
-class Reserva {
-    constructor(nombre, telefono, email, fechaIngreso, fechaSalida, tipoHabitacion, categoria, huespedes, titular, tarjeta, vencimiento, cvv) {
-        this.nombre = nombre;
+export class Reserva {
+    constructor(
+        nombreCompleto,
+        telefono,
+        email,
+        categoriaHabitacion,
+        cantidadHuespedes,
+        fechaIngreso,
+        fechaSalida,
+        serviciosAdicionales,
+        comentarios
+    ) {
+        this.nombreCompleto = nombreCompleto;
         this.telefono = telefono;
         this.email = email;
+        this.categoriaHabitacion = categoriaHabitacion;
+        this.cantidadHuespedes = Number(cantidadHuespedes);
         this.fechaIngreso = fechaIngreso;
         this.fechaSalida = fechaSalida;
-        this.tipoHabitacion = tipoHabitacion;
-        this.categoria = categoria;
-        this.huespedes = huespedes;
-
-        //recibimos estos datos pero no resrevamos en localstorage
-        this.titular = titular;
-        this.tarjeta = tarjeta;
-        this.vencimiento = vencimiento;
-        this.cvv = cvv;
+        this.serviciosAdicionales = serviciosAdicionales;
+        this.comentarios = comentarios;
     }
 }
 
-class Sistema {
-    constructor() {
-        this.listaUsuarios = [];
-        this.listaReservas = [];
 
-        this.listaUsuarios.push(new Usuario("admin", "hotel"));
-        this.cargarReservasDesdeLocalStorage();
+// validaciones de reserva
+
+export function validarReserva(reserva) {
+    let errores = {};
+
+    //nombre
+    if (reserva.nombreCompleto.trim() === "") {
+        errores.nombreCompleto = "El nombre completo es obligatorio.";
     }
 
-    agregarReserva(nuevaReserva) {
-        this.listaReservas.push(nuevaReserva);
-        this.guardarReservasEnLocalStorage();
-
+    //tel
+    if (reserva.telefono.trim() === "") {
+        errores.telefono = "El teléfono es obligatorio.";
+    } else if (!/^09\d{7}$/.test(reserva.telefono)) {
+        errores.telefono =
+            "El teléfono debe tener el formato 09XNNNNNN.";
     }
 
-    guardarReservasEnLocalStorage() {
-        let reservasJSON = JSON.stringify(this.listaReservas);
-        localStorage.setItem("reservas", reservasJSON);
+    //email
+    if (reserva.email.trim() === "") {
+        errores.email = "El correo electrónico es obligatorio.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reserva.email)) {
+        errores.email = "El correo electrónico no tiene un formato válido.";
     }
 
-    cargarReservasDesdeLocalStorage() {
-        let reservasJSON = localStorage.getItem("reservas");
-
-        if (reservasJSON !== null) {
-            this.listaReservas = JSON.parse(reservasJSON);
-        }
+    //cant huespedes
+    if (
+        !Number.isInteger(reserva.cantidadHuespedes) ||
+        reserva.cantidadHuespedes <= 0
+    ) {
+        errores.cantidadHuespedes =
+            "La cantidad de huéspedes debe ser mayor que cero.";
+    } else if (reserva.cantidadHuespedes >= 4) {
+        errores.cantidadHuespedes =
+            "La cantidad máxima permitida es de 3 huéspedes.";
     }
 
-    login(usuarioIngresado, contraseniaIngresada) {
-        let valido = false;
-        let i = 0;
-
-        while (!valido && i < this.listaUsuarios.length) {
-            let usuario = this.listaUsuarios[i];
-
-            if (usuario.usuario === usuarioIngresado &&
-                usuario.contrasenia === contraseniaIngresada) {
-                valido = true;
-            }
-
-            i++;
-        }
-
-        return valido;
+    //fechas
+    if (reserva.fechaIngreso === "") {
+        errores.fechaIngreso =
+            "La fecha de ingreso es obligatoria.";
+    } else if (fechaEsAnteriorAHoy(reserva.fechaIngreso)) {
+        errores.fechaIngreso =
+            "La fecha de ingreso no puede ser anterior a la fecha actual.";
     }
 
-    cargarTablaReservas() {
-
-    let tabla = `
-    <table class="tabla-reservas">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Ingreso</th>
-                <th>Salida</th>
-                <th>Habitación</th>
-                <th>Categoría</th>
-                <th>Huéspedes</th>
-            </tr>
-        </thead>
-        <tbody>
-    `;
-
-    if (this.listaReservas.length === 0) {
-        tabla += `
-        <tr>
-            <td colspan="7">No hay reservas registradas</td>
-        </tr>
-        `;
-    } else {
-        for (let reserva of this.listaReservas) {
-            tabla += `
-            <tr>
-                <td data-label="Nombre">${reserva.nombre}</td>
-                <td data-label="Email">${reserva.email}</td>
-                <td data-label="Ingreso">${reserva.fechaIngreso}</td>
-                <td data-label="Salida">${reserva.fechaSalida}</td>
-                <td data-label="Habitación">${reserva.tipoHabitacion}</td>
-                <td data-label="Categoría">${reserva.categoria}</td>
-                <td data-label="Huéspedes">${reserva.huespedes}</td>
-            </tr>
-            `;
-        }
+    if (reserva.fechaSalida === "") {
+        errores.fechaSalida =
+            "La fecha de salida es obligatoria.";
+    } else if (
+        reserva.fechaIngreso !== "" &&
+        new Date(reserva.fechaSalida) <= new Date(reserva.fechaIngreso)
+    ) {
+        errores.fechaSalida =
+            "La fecha de salida debe ser posterior a la fecha de ingreso.";
     }
 
-    tabla += `
-        </tbody>
-    </table>
-    `;
-
-    return tabla;
+    return errores;
 }
 
 
+//auxiliares
+function fechaEsAnteriorAHoy(fechaIngreso) {
+    let fechaSeleccionada = new Date(fechaIngreso + "T00:00:00");
 
+    let hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
 
+    return fechaSeleccionada < hoy;
 }
+
+
 
