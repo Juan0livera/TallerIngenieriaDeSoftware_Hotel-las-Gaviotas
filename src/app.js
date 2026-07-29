@@ -1,7 +1,11 @@
-let miApp = new Sistema();
-import { Sistema, Reserva } from "./core/reservas.js";
+import { Reserva, validarReserva } from "./core/reservas.js";
 import { login, validarCamposLogin } from "./core/login.js";
 
+// para tenerlas en memoria
+let listaReservas = cargarReservasDesdeLocalStorage();
+
+
+// EVENTOS -----------------
 function eventos() {
     let btnIngresar = document.querySelector("#btnIngresar");
 
@@ -9,7 +13,7 @@ function eventos() {
 
     let btnLogout = document.querySelector("#btnLogout");
 
-    if(btnReservar){
+    if (btnReservar) {
         btnReservar.addEventListener("click", reservar);
     }
 
@@ -22,7 +26,7 @@ function eventos() {
     }
 }
 
-
+// login -----------------
 function loginUI() {
     let usuario = document.querySelector("#usuario").value.trim();
     let contrasenia = document.querySelector("#password").value.trim();
@@ -54,87 +58,236 @@ if (window.location.href.includes("listado.html")) {
     }
 }
 
+
+// Reservas -----------------
+
+function reservar(evento) {
+
+    evento.preventDefault(); // para evitar envio tradicional del form como pide la documentacion
+
+    limpiarErroresReserva();
+    let nuevaReserva = obtenerDatosReserva();
+    let errores = validarReserva(nuevaReserva);
+
+    if (Object.keys(errores).length > 0) {
+        mostrarErroresReserva(errores);
+        return;
+    }
+
+    listaReservas.push(nuevaReserva);
+    guardarReservasEnLocalStorage();
+    document.querySelector("#reservationForm").reset();
+
+
+    mostrarResumenReserva(nuevaReserva); 
+
+}
+
+function obtenerDatosReserva() {
+
+    let nombreCompleto = document.querySelector("#nombreCompleto").value.trim();
+    let telefono = document.querySelector("#telefono").value.trim();
+    let email = document.querySelector("#email").value.trim();
+    let fechaIngreso = document.querySelector("#fechaIngreso").value.trim();
+    let fechaSalida = document.querySelector("#fechaSalida").value;
+    let categoriaHabitacion = document.querySelector("#categoriaHabitacion").value;
+    let cantidadHuespedes = document.querySelector("#cantidadHuespedes").value;
+
+
+    let comentarios =
+        document.querySelector("#comentarios").value.trim();
+
+    let serviciosAdicionales = Array.from(
+        document.querySelectorAll(
+            'input[name="serviciosAdicionales"]:checked'
+        )
+    ).map(servicio => servicio.value);
+
+    return new Reserva(
+        nombreCompleto,
+        telefono,
+        email,
+        categoriaHabitacion,
+        cantidadHuespedes,
+        fechaIngreso,
+        fechaSalida,
+        serviciosAdicionales,
+        comentarios
+    );
+}
+
+function mostrarErroresReserva(errores) {
+    let contenedorErrores = document.querySelector("#erroresReserva");
+
+    let listaErrores = Object.values(errores);
+
+    let html = "<ul>";
+
+    for (let error of listaErrores) {
+        html += `<li>${error}</li>`;
+    }
+
+    html += "</ul>";
+
+    contenedorErrores.innerHTML = html;
+    contenedorErrores.hidden = false;
+}
+
+function mostrarResumenReserva(reserva) {
+    let resumen = document.querySelector("#resumenReserva");
+
+    document.querySelector("#resumenNombre").textContent =
+        reserva.nombreCompleto;
+
+    document.querySelector("#resumenCategoria").textContent =
+        reserva.categoriaHabitacion;
+
+    document.querySelector("#resumenHuespedes").textContent =
+        reserva.cantidadHuespedes;
+
+    document.querySelector("#resumenIngreso").textContent =
+        reserva.fechaIngreso;
+
+    document.querySelector("#resumenSalida").textContent =
+        reserva.fechaSalida;
+
+    document.querySelector("#resumenServicios").textContent =
+        reserva.serviciosAdicionales.length > 0
+            ? reserva.serviciosAdicionales.join(", ")
+            : "Ninguno";
+
+    resumen.hidden = false;
+}
+
+// manejo de lista y guardado en localstorage
+function cargarReservasDesdeLocalStorage() {
+    let reservasJSON = localStorage.getItem("reservas");
+
+    if (reservasJSON === null) {
+        return [];
+    }
+
+    return JSON.parse(reservasJSON);
+}
+
+function guardarReservasEnLocalStorage() {
+    let reservasJSON = JSON.stringify(listaReservas);
+
+    localStorage.setItem("reservas", reservasJSON);
+}
+
+
+function limpiarErroresReserva() {
+    let contenedorErrores = document.querySelector("#erroresReserva");
+
+    contenedorErrores.innerHTML = "";
+    contenedorErrores.hidden = true;
+}
+
 function mostrarReservas() {
 
     let lista = document.querySelector("#listaReservas");
 
     if (lista) {
-        lista.innerHTML = miApp.cargarTablaReservas();
+        lista.innerHTML = construirTablaReservas();
     }
 
 }
 
+function construirTablaReservas() {
+    let tabla = `
+        <table class="tabla-reservas">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Ingreso</th>
+                    <th>Salida</th>
+                    <th>Categoría</th>
+                    <th>Huéspedes</th>
+                    <th>Servicios</th>
+                    <th>Comentarios</th>
+                </tr>
+            </thead>
 
-function reservar (){
-    let nombre = document.querySelector("#nombre").value.trim();
-    let telefono = document.querySelector("#telefono").value.trim();
-    let email = document.querySelector("#email").value.trim();
-    let fechaIngreso = document.querySelector("#fechaIngreso").value.trim();
-    let fechaSalida = document.querySelector("#fechaSalida").value;
-    let tipoHabitacion = document.querySelector("#tipoHabitacion").value;
-    let categoria = document.querySelector("#categoria").value;
-    let huespedes = document.querySelector("#huespedes").value;
-    let titular = document.querySelector("#titular").value.trim();
-    let tarjeta = document.querySelector("#tarjeta").value.trim();
-    let vencimiento = document.querySelector("#vencimiento").value.trim();
-    let cvv = document.querySelector("#cvv").value.trim();
+            <tbody>
+    `;
 
-   let mensaje = document.querySelector("#mensajeReserva");
+    if (listaReservas.length === 0) {
+        tabla += `
+            <tr>
+                <td colspan="9">
+                    No hay reservas registradas
+                </td>
+            </tr>
+        `;
+    } else {
+        for (let reserva of listaReservas) {
+            let servicios = "Ninguno";
 
+            if (
+                Array.isArray(reserva.serviciosAdicionales) &&
+                reserva.serviciosAdicionales.length > 0
+            ) {
+                servicios = reserva.serviciosAdicionales.join(", ");
+            }
 
-    if (
-        nombre === "" ||
-        telefono === "" ||
-        email === "" ||
-        fechaIngreso === "" ||
-        fechaSalida === "" ||
-        tipoHabitacion === "" ||
-        categoria === "" ||
-        huespedes <= 0 ||
-        titular === "" ||
-        tarjeta === "" ||
-        vencimiento === "" ||
-        cvv === ""
-    ) {
+            let comentarios =
+                reserva.comentarios !== ""
+                    ? reserva.comentarios
+                    : "Sin comentarios";
 
-        mensaje.textContent = "Debe completar los campos.";
-        return;
+            tabla += `
+                <tr>
+                    <td data-label="Nombre">
+                        ${reserva.nombreCompleto}
+                    </td>
+
+                    <td data-label="Teléfono">
+                        ${reserva.telefono}
+                    </td>
+
+                    <td data-label="Email">
+                        ${reserva.email}
+                    </td>
+
+                    <td data-label="Ingreso">
+                        ${reserva.fechaIngreso}
+                    </td>
+
+                    <td data-label="Salida">
+                        ${reserva.fechaSalida}
+                    </td>
+
+                    <td data-label="Categoría">
+                        ${reserva.categoriaHabitacion}
+                    </td>
+
+                    <td data-label="Huéspedes">
+                        ${reserva.cantidadHuespedes}
+                    </td>
+
+                    <td data-label="Servicios">
+                        ${servicios}
+                    </td>
+
+                    <td data-label="Comentarios">
+                        ${comentarios}
+                    </td>
+                </tr>
+            `;
+        }
     }
 
-    if(new Date(fechaSalida) <= new Date(fechaIngreso)){
-        mensaje.textContent =
-             "La fecha de salida debe ser posterior a la fecha de ingreso";
-        return;
-    }
+    tabla += `
+            </tbody>
+        </table>
+    `;
 
-    let nuevaReserva = new Reserva(
-        nombre, 
-        telefono,
-        email,
-        fechaIngreso,
-        fechaSalida,
-        tipoHabitacion,
-        categoria,
-        huespedes,
-        titular,
-        tarjeta,
-        vencimiento,
-        cvv
-    );
-
-    miApp.agregarReserva(nuevaReserva);
-
-    mensaje.textContent = "La reserva se realizó correctamente";
-
-    document.querySelector("#reservationForm").reset();
-
-    console.log("Reserva agregada:");
-    console.log(nuevaReserva);
-
-    console.log("Lista completa:");
-    console.table(miApp.listaReservas);
-    
+    return tabla;
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
 

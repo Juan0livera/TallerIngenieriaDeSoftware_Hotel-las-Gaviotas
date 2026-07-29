@@ -6,7 +6,6 @@ class Usuario {
 }
 
 let listaUsuarios = [];
-
 listaUsuarios.push(new Usuario("admin", "hotel"));
 
 export function validarCamposLogin(usuario, contrasenia) {
