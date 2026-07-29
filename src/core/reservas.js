@@ -6,21 +6,26 @@ export class Usuario {
 }
 
 export class Reserva {
-    constructor(nombre, telefono, email, fechaIngreso, fechaSalida, tipoHabitacion, categoria, huespedes, titular, tarjeta, vencimiento, cvv) {
-        this.nombre = nombre;
+    constructor(
+        nombreCompleto,
+        telefono,
+        email,
+        categoriaHabitacion,
+        cantidadHuespedes,
+        fechaIngreso,
+        fechaSalida,
+        serviciosAdicionales,
+        comentarios
+    ) {
+        this.nombreCompleto = nombreCompleto;
         this.telefono = telefono;
         this.email = email;
+        this.categoriaHabitacion = categoriaHabitacion;
+        this.cantidadHuespedes = cantidadHuespedes;
         this.fechaIngreso = fechaIngreso;
         this.fechaSalida = fechaSalida;
-        this.tipoHabitacion = tipoHabitacion;
-        this.categoria = categoria;
-        this.huespedes = huespedes;
-
-        //recibimos estos datos pero no resrevamos en localstorage
-        this.titular = titular;
-        this.tarjeta = tarjeta;
-        this.vencimiento = vencimiento;
-        this.cvv = cvv;
+        this.serviciosAdicionales = serviciosAdicionales;
+        this.comentarios = comentarios;
     }
 }
 

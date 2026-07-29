@@ -55,6 +55,7 @@
 
     <section class="reservation-section">
       <div class="container reservation-layout">
+
         <form id="reservationForm" class="reservation-form" novalidate>
           <section class="form-card">
             <div class="form-card-heading">
@@ -66,23 +67,33 @@
             </div>
 
             <div class="form-grid form-grid-2">
-              <div class="form-group">
-                <label for="nombre">Nombre completo <span>*</span></label>
-                <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej.: Juan Olivera" required minlength="3">
-                <small class="field-error"></small>
-              </div>
-
-              <div class="form-group">
-                <label for="telefono">Teléfono <span>*</span></label>
-                <input id="telefono" name="telefono" type="tel" autocomplete="tel" placeholder="Ej.: 099 123 456" required>
-                <small class="field-error"></small>
-              </div>
-
               <div class="form-group form-group-full">
-                <label for="email">Correo electrónico <span>*</span></label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="Ej.: juan@email.com"
-                  required>
-                <small class="field-error"></small>
+                <label for="nombreCompleto">
+                  Nombre completo <span>*</span>
+                </label>
+                <input type="text" id="nombreCompleto" name="nombreCompleto" placeholder="Ej.: Ana Pérez">
+                <p id="errorNombreCompleto" class="field-error"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="telefono">
+                  Teléfono <span>*</span>
+                </label>
+
+                <input type="tel" id="telefono" name="telefono" placeholder="Ej.: 099123456">
+
+                <p id="errorTelefono" class="field-error"></p>
+              </div>
+
+
+              <div class="form-group">
+                <label for="email">
+                  Correo electrónico <span>*</span>
+                </label>
+
+                <input type="email" id="email" name="email" placeholder="Ej.: nombre@correo.com">
+
+                <p id="errorEmail" class="field-error"></p>
               </div>
             </div>
           </section>
@@ -97,184 +108,120 @@
             </div>
 
             <div class="form-grid form-grid-2">
-              <div class="form-group">
-                <label for="fechaIngreso">Fecha de ingreso <span>*</span></label>
-                <input id="fechaIngreso" name="fechaIngreso" type="date" required>
-                <small class="field-error"></small>
-              </div>
 
-              <div class="form-group">
-                <label for="fechaSalida">Fecha de salida <span>*</span></label>
-                <input id="fechaSalida" name="fechaSalida" type="date" required>
-                <small class="field-error"></small>
-              </div>
+              <div class="form-group form-group-full">
+                <label for="categoriaHabitacion">
+                  Categoría de habitación <span>*</span>
+                </label>
 
-              <div class="form-group">
-                <label for="tipoHabitacion">Tipo de habitación <span>*</span></label>
-                <select id="tipoHabitacion" name="tipoHabitacion" required>
-                  <option value="">Seleccioná una opción</option>
-                  <option value="Individual">Individual</option>
-                  <option value="Doble">Doble</option>
-                  <option value="Triple">Triple</option>
+                <select id="categoriaHabitacion" name="categoriaHabitacion">
+                  <option value="">Seleccionar categoría</option>
+                  <option value="estandar">Estándar</option>
+                  <option value="premium">Premium</option>
+                  <option value="luxury">Luxury</option>
+                  <option value="presidencial">Presidencial</option>
                 </select>
-                <small class="field-error"></small>
-              </div>
 
-              <div class="form-group">
-                <label for="categoria">Categoría <span>*</span></label>
-                <select id="categoria" name="categoria" required>
-                  <option value="">Seleccioná una categoría</option>
-                  <option value="Estandar" data-price="100">Estándar — USD 100 por noche</option>
-                  <option value="Premium" data-price="110">Premium — USD 110 por noche</option>
-                  <option value="Luxury" data-price="121">Luxury — USD 121 por noche</option>
-                  <option value="Presidencial" data-price="133.10">Presidencial — USD 133,10 por noche</option>
-                </select>
-                <small class="field-error"></small>
+                <p id="errorCategoriaHabitacion" class="field-error"></p>
               </div>
 
               <div class="form-group form-group-full">
-                <label for="huespedes">Cantidad de huéspedes <span>*</span></label>
-                <select id="huespedes" name="huespedes" required>
-                  <option value="">Seleccioná la cantidad</option>
-                  <option value="1">1 huésped</option>
-                  <option value="2">2 huéspedes</option>
-                  <option value="3">3 huéspedes</option>
-                </select>
-                <small class="field-error"></small>
+                <label for="cantidadHuespedes">
+                  Cantidad de huéspedes <span>*</span>
+                </label>
+
+                <input type="number" id="cantidadHuespedes" name="cantidadHuespedes" placeholder="Ej.: 2">
+
+                <p id="errorCantidadHuespedes" class="field-error"></p>
               </div>
+
+              <div class="form-group">
+                <label for="fechaIngreso">
+                  Fecha de ingreso <span>*</span>
+                </label>
+
+                <input type="date" id="fechaIngreso" name="fechaIngreso">
+
+                <p id="errorFechaIngreso" class="field-error"></p>
+              </div>
+
+              <div class="form-group">
+                <label for="fechaSalida">
+                  Fecha de salida <span>*</span>
+                </label>
+
+                <input type="date" id="fechaSalida" name="fechaSalida">
+
+                <p id="errorFechaSalida" class="field-error"></p>
+              </div>
+
             </div>
 
-            <div class="availability-message" id="availabilityMessage" aria-live="polite">
-              Seleccioná las fechas y la habitación para calcular tu estadía.
-            </div>
           </section>
-
-
 
           <section class="form-card">
             <div class="form-card-heading">
               <span class="step-number">3</span>
+
               <div>
-                <h2>Pago</h2>
-                <p>La tarjeta se solicita para garantizar la reserva.</p>
+                <h2>Servicios adicionales</h2>
+                <p>
+                  Podés seleccionar los servicios que quieras agregar a tu estadía.
+                </p>
               </div>
             </div>
 
-            <div class="payment-notice">
-              Prototipo académico: no se realizará ningún cobro real ni se almacenará el número completo de tarjeta o el
-              código CVV.
+            <fieldset class="extras-fieldset">
+              <label class="extra-option">
+                <input type="checkbox" name="serviciosAdicionales" value="Traslado">
+
+                <span>
+                  <strong>Traslado</strong>
+                  <small>Servicio de traslado desde o hacia el hotel.</small>
+                </span>
+              </label>
+
+              <label class="extra-option">
+                <input type="checkbox" name="serviciosAdicionales" value="Estacionamiento">
+
+                <span>
+                  <strong>Estacionamiento</strong>
+                  <small>Espacio de estacionamiento durante la estadía.</small>
+                </span>
+              </label>
+            </fieldset>
+
+            <div class="form-group comments-group">
+              <label for="comentarios">
+                Comentarios o solicitudes especiales
+              </label>
+
+              <textarea id="comentarios" name="comentarios"
+                placeholder="Escribí aquí cualquier solicitud o comentario adicional..."></textarea>
+
+              <div class="textarea-help">
+                <span>Estos campos son opcionales.</span>
+                <span id="contadorComentarios">0 / 500</span>
+              </div>
             </div>
-
-            <div class="form-grid form-grid-2">
-              <div class="form-group form-group-full">
-                <label for="titular">Nombre del titular <span>*</span></label>
-                <input id="titular" name="titular" type="text" autocomplete="cc-name" placeholder="Como aparece en la tarjeta" required minlength="3">
-                <small class="field-error"></small>
-              </div>
-
-              <div class="form-group form-group-full">
-                <label for="tarjeta">Número de tarjeta <span>*</span></label>
-                <input id="tarjeta" name="tarjeta" type="text" inputmode="numeric" autocomplete="cc-number" maxlength="19" placeholder="1234 5678 9012 3456" required>
-                <small class="field-error"></small>
-              </div>
-
-              <div class="form-group">
-                <label for="vencimiento">Vencimiento <span>*</span></label>
-                <input id="vencimiento" name="vencimiento" type="text" inputmode="numeric" autocomplete="cc-exp" maxlength="5" placeholder="MM/AA" required>
-                <small class="field-error"></small>
-              </div>
-
-              <div class="form-group">
-                <label for="cvv">CVV <span>*</span></label>
-                <input id="cvv" name="cvv" type="password" inputmode="numeric" autocomplete="cc-csc" maxlength="4"
-                  placeholder="123" required>
-                <small class="field-error"></small>
-              </div>
-            </div>
-
-            <label class="terms-option">
-              <input id="terms" name="terms" type="checkbox" required>
-              <span>Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de
-                  privacidad</a>.</span>
-            </label>
-            <small class="field-error terms-error"></small>
           </section>
 
-          <button class="submit-button" type="button" id="btnReservar">Realizar reserva</button>
-          <p id="mensajeReserva"></p>
+          <p id="mensajeReserva" class="availability-message" role="status" aria-live="polite" hidden></p>
+
+
+          <button type="submit" id="btnReservar" class="submit-button">
+            Confirmar reserva
+          </button>
+
         </form>
 
-        <!-- <aside class="reservation-summary" aria-labelledby="summaryTitle">
-          <div class="summary-image">
-            <img id="summaryImage" src="img/estandar.png" alt="Habitación seleccionada">
-          </div>
-
-          <div class="summary-content">
-            <p class="summary-label">Resumen de la reserva</p>
-            <h2 id="summaryTitle">Seleccioná una habitación</h2>
-
-            <dl class="summary-list">
-              <div>
-                <dt>Tipo</dt>
-                <dd id="summaryRoomType">—</dd>
-              </div>
-              <div>
-                <dt>Categoría</dt>
-                <dd id="summaryCategory">—</dd>
-              </div>
-              <div>
-                <dt>Huéspedes</dt>
-                <dd id="summaryGuests">—</dd>
-              </div>
-              <div>
-                <dt>Ingreso</dt>
-                <dd id="summaryCheckIn">—</dd>
-              </div>
-              <div>
-                <dt>Salida</dt>
-                <dd id="summaryCheckOut">—</dd>
-              </div>
-              <div>
-                <dt>Noches</dt>
-                <dd id="summaryNights">0</dd>
-              </div>
-            </dl>
-
-            <div class="price-breakdown">
-              <div><span>Alojamiento</span><strong id="roomSubtotal">USD 0,00</strong></div>
-              <div><span>Servicios adicionales</span><strong id="extrasSubtotal">USD 0,00</strong></div>
-              <div><span>Impuestos y tasas (10%)</span><strong id="taxes">USD 0,00</strong></div>
-            </div>
-
-            <div class="summary-total">
-              <span>Total</span>
-              <strong id="totalPrice">USD 0,00</strong>
-            </div>
-
-            <p class="summary-security">Tus datos de pago no se almacenan en este prototipo.</p>
-          </div>
-        </aside> -->
       </div>
     </section>
+
+
   </main>
 
-  <div class="modal" id="confirmationModal" role="dialog" aria-modal="true" aria-labelledby="confirmationTitle" hidden>
-    <div class="modal-backdrop" data-close-modal></div>
 
-    <div class="modal-card">
-      <div class="success-icon" aria-hidden="true">✓</div>
-      <p class="eyebrow">Reserva registrada</p>
-      <h2 id="confirmationTitle">¡Tu reserva fue confirmada!</h2>
-      <p>Enviaremos los detalles al correo indicado en el formulario.</p>
-
-      <div class="confirmation-data">
-        <div><span>Código de reserva</span><strong id="confirmationCode"></strong></div>
-        <div><span>Total</span><strong id="confirmationTotal"></strong></div>
-      </div>
-
-      <button class="modal-button" type="button" data-close-modal>Finalizar</button>
-    </div>
-  </div>
 
   <footer class="site-footer">
     <div class="container footer-main">
@@ -339,8 +286,8 @@
         </p>
       </div>
   </footer>
-  
-<script type="module" src="./src/app.js"></script>
+
+  <script type="module" src="./src/app.js"></script>
 
 
 </body>
