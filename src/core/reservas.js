@@ -1,11 +1,11 @@
-class Usuario {
+export class Usuario {
     constructor(usuario, contrasenia) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;
     }
 }
 
-class Reserva {
+export class Reserva {
     constructor(nombre, telefono, email, fechaIngreso, fechaSalida, tipoHabitacion, categoria, huespedes, titular, tarjeta, vencimiento, cvv) {
         this.nombre = nombre;
         this.telefono = telefono;
@@ -24,7 +24,7 @@ class Reserva {
     }
 }
 
-class Sistema {
+export class Sistema {
     constructor() {
         this.listaUsuarios = [];
         this.listaReservas = [];

@@ -1,9 +1,13 @@
 let miApp = new Sistema();
+import { Sistema, Reserva } from "./core/reservas.js";
+import { login, validarCamposLogin } from "./core/login.js";
 
 function eventos() {
     let btnIngresar = document.querySelector("#btnIngresar");
 
     let btnReservar = document.querySelector("#btnReservar");
+
+    let btnLogout = document.querySelector("#btnLogout");
 
     if(btnReservar){
         btnReservar.addEventListener("click", reservar);
@@ -12,24 +16,31 @@ function eventos() {
     if (btnIngresar) {
         btnIngresar.addEventListener("click", loginUI);
     }
+
+    if (btnLogout) {
+        btnLogout.addEventListener("click", logout);
+    }
 }
 
 
 function loginUI() {
-    let mensaje = "";
+    let usuario = document.querySelector("#usuario").value.trim();
+    let contrasenia = document.querySelector("#password").value.trim();
 
-    let usuario = document.querySelector("#usuario").value;
-    let contrasenia = document.querySelector("#password").value;
+    let mensaje = validarCamposLogin(usuario, contrasenia);
 
-    if (miApp.login(usuario, contrasenia)) {
+    if (mensaje !== "") {
+        document.querySelector("#errorLogin").textContent = mensaje;
+        return;
+    }
+
+    if (login(usuario, contrasenia)) {
         localStorage.setItem("logueado", "true");
         location.href = "listado.html";
+    } else {
+        document.querySelector("#errorLogin").textContent =
+            "Nombre o contraseña incorrecta";
     }
-    else {
-        mensaje = "Nombre o contraseña incorrecta";
-    }
-
-    document.querySelector("#errorLogin").innerHTML = mensaje;
 }
 
 function logout() {
