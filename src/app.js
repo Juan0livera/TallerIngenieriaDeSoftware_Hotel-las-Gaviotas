@@ -78,7 +78,6 @@ function reservar(evento) {
     guardarReservasEnLocalStorage();
     document.querySelector("#reservationForm").reset();
 
-
     mostrarResumenReserva(nuevaReserva); 
 
 }
@@ -184,6 +183,7 @@ function limpiarErroresReserva() {
     contenedorErrores.hidden = true;
 }
 
+//listado
 function mostrarReservas() {
 
     let lista = document.querySelector("#listaReservas");
