@@ -1,4 +1,7 @@
-export class Reserva {
+
+
+
+class Reserva {
     constructor(
         nombreCompleto,
         telefono,
@@ -23,9 +26,25 @@ export class Reserva {
 }
 
 
+
+function crearReserva(nombreCompleto, telefono, email, fechaIngreso, fechaSalida, categoriaHabitacion, cantidadHuespedes, comentarios, serviciosAdicionales) {
+
+    return new Reserva(
+        nombreCompleto,
+        telefono,
+        email,
+        categoriaHabitacion,
+        cantidadHuespedes,
+        fechaIngreso,
+        fechaSalida,
+        serviciosAdicionales,
+        comentarios
+    );
+
+}
 // validaciones de reserva
 
-export function validarReserva(reserva) {
+function validarReserva(reserva) {
     let errores = {};
 
     //nombre
@@ -94,5 +113,7 @@ function fechaEsAnteriorAHoy(fechaIngreso) {
     return fechaSeleccionada < hoy;
 }
 
+
+module.exports = { validarReserva };
 
 

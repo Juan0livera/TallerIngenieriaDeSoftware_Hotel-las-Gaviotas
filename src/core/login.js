@@ -16,7 +16,7 @@ export function validarCamposLogin(usuario, contrasenia) {
     return "";
 }
 
-export function login(usuarioIngresado, contraseniaIngresada) {
+ function login(usuarioIngresado, contraseniaIngresada) {
     let valido = false;
     let i = 0;
 

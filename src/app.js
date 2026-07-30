@@ -1,5 +1,7 @@
-import { Reserva, validarReserva } from "./core/reservas.js";
-import { login, validarCamposLogin } from "./core/login.js";
+/* import { Reserva, validarReserva, crearReserva } from "./core/reservas.js";
+import { login, validarCamposLogin } from "./core/login.js"; */
+
+const reservas = require("../src/core/reservas");
 
 // para tenerlas en memoria
 let listaReservas = cargarReservasDesdeLocalStorage();
@@ -102,18 +104,12 @@ function obtenerDatosReserva() {
         )
     ).map(servicio => servicio.value);
 
-    return new Reserva(
-        nombreCompleto,
-        telefono,
-        email,
-        categoriaHabitacion,
-        cantidadHuespedes,
-        fechaIngreso,
-        fechaSalida,
-        serviciosAdicionales,
-        comentarios
-    );
+    return crearReserva(nombreCompleto, telefono, email, fechaIngreso, fechaSalida, categoriaHabitacion, cantidadHuespedes, comentarios, serviciosAdicionales);
 }
+
+
+
+
 
 function mostrarErroresReserva(errores) {
     let contenedorErrores = document.querySelector("#erroresReserva");
