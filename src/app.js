@@ -1,7 +1,4 @@
-/* import { Reserva, validarReserva, crearReserva } from "./core/reservas.js";
-import { login, validarCamposLogin } from "./core/login.js"; */
 
-const reservas = require("../src/core/reservas");
 
 // para tenerlas en memoria
 let listaReservas = cargarReservasDesdeLocalStorage();
@@ -290,3 +287,15 @@ document.addEventListener("DOMContentLoaded", function () {
     eventos();
     mostrarReservas();
 });
+
+if (typeof module !== "undefined" && module.exports) {
+    // Node.js / Jest
+    module.exports = {
+        crearReserva,
+        validarReserva
+    };
+} else {
+    // Navegador
+    window.crearReserva = crearReserva;
+    window.validarReserva = validarReserva;
+}

@@ -114,6 +114,18 @@ function fechaEsAnteriorAHoy(fechaIngreso) {
 }
 
 
-module.exports = { validarReserva };
+/* module.exports = { validarReserva }; */
+
+if (typeof module !== "undefined" && module.exports) {
+    // para jest usa modulo
+    module.exports = {
+        crearReserva,
+        validarReserva
+    };
+} else {
+    // para navegador se expporta con window
+    window.crearReserva = crearReserva;
+    window.validarReserva = validarReserva;
+}
 
 

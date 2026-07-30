@@ -8,7 +8,7 @@ class Usuario {
 let listaUsuarios = [];
 listaUsuarios.push(new Usuario("admin", "hotel"));
 
-export function validarCamposLogin(usuario, contrasenia) {
+function validarCamposLogin(usuario, contrasenia) {
     if (usuario === "" || contrasenia === "") {
         return "El usuario y la contraseña son campos obligatorios";
     }
