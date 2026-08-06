@@ -50,7 +50,11 @@ function validarReserva(reserva) {
     //nombre
     if (reserva.nombreCompleto.trim() === "") {
         errores.nombreCompleto = "El nombre completo es obligatorio.";
+    } else if (!/^\p{L}+(?:\s+\p{L}+)*$/u.test(reserva.nombreCompleto.trim())) {
+        errores.nombreCompleto = "El nombre completo no puede tener caracteres especiales.";
     }
+
+
 
     //tel
     if (reserva.telefono.trim() === "") {
@@ -65,6 +69,11 @@ function validarReserva(reserva) {
         errores.email = "El correo electrónico es obligatorio.";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reserva.email)) {
         errores.email = "El correo electrónico no tiene un formato válido.";
+    }
+
+    //categoria habitacion
+    if (reserva.categoriaHabitacion.trim() === "") {
+        errores.categoriaHabitacion = "La categoría de habitación es obligatoria.";
     }
 
     //cant huespedes
